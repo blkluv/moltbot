@@ -1,3 +1,5 @@
 {
-  "outputDirectory": "ui/dist/control-ui"
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "ui/dist/control-ui",
+  "framework": null
 }
