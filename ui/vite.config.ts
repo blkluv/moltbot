@@ -12,20 +12,26 @@ function normalizeBase(input: string): string {
   return `${trimmed}/`;
 }
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   const envBase = process.env.CLAWDBOT_CONTROL_UI_BASE_PATH?.trim();
   const base = envBase ? normalizeBase(envBase) : "./";
+
   return {
     base,
+
     publicDir: path.resolve(here, "public"),
+
     optimizeDeps: {
       include: ["lit/directives/repeat.js"],
     },
+
     build: {
-      outDir: path.resolve(here, "../dist/control-ui"),
+      // ✅ CRITICAL FIX — build INSIDE ui folder
+      outDir: "control-ui",
       emptyOutDir: true,
       sourcemap: true,
     },
+
     server: {
       host: true,
       port: 5173,
